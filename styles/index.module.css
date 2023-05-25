@@ -1,37 +1,57 @@
-  .title {
-    text-align: center;
-  }
-  
-  .slogan {
-    text-align: center;
-  }
+.githubButtonContainer {
+  text-align: left;
+  display: flex;
+  justify-content: flex-end;
+}
 
-  
-  .buttonContainer {
-    margin-top: 20px;
-  }
-  
-  .linkButton {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
-    font-size: 16px;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-  
-  .blue {
-    background-color: blue;
-    color: white;
-  }
-  
-  .green {
-    background-color: green;
-    color: white;
-  }
-  
-  .red {
-    background-color: rgb(150, 0, 0);
-    color: white;
-  }
-  
+
+.githubButton {
+  border-radius: 4px;
+  background-color: green;
+  padding: 1%;
+}
+
+.title {
+  text-align: center;
+}
+
+.slogan {
+  text-align: center;
+}
+
+
+.buttonContainerTop {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttonContainerBottom {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.linkButton {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.blue {
+  background-color: blue;
+  color: rgb(161, 161, 161);
+}
+
+.green {
+  background-color: green;
+  color: rgb(161, 161, 161);
+}
+
+.red {
+  background-color: rgb(150, 0, 0);
+  color: rgb(161, 161, 161);
+}

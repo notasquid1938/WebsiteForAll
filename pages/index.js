@@ -10,6 +10,17 @@ export default function Home() {
         <meta name="description" content="A grassroots community dedicated to combating corporate conglomerates." />
       </Head>
 
+      <div className={styles.githubButtonContainer}>
+        <a
+          href="https://github.com/notasquid1938/WebsiteForAll"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.githubButton}
+        >
+          Github
+        </a>
+      </div>
+
       <div className={styles.title}>
         <h1>Welcome to the Homepage!</h1>
       </div>
@@ -18,17 +29,23 @@ export default function Home() {
         <p1>For the Benefit of All</p1>
       </div>
 
-      <div className={styles.buttonContainer}>
+      <div className={styles.buttonContainerTop}>
         <Link href="/chat">
-          <a className={`${styles.linkButton} ${styles.blue}`}>Chat</a>
-        </Link>
-
-        <Link href="/blog">
-          <a className={`${styles.linkButton} ${styles.green}`}>Blog</a>
+          <a className={`${styles.linkButton} ${styles.blue}`}>Live Chat</a>
         </Link>
 
         <Link href="/files">
           <a className={`${styles.linkButton} ${styles.red}`}>Files</a>
+        </Link>
+      </div>
+
+      <div className={styles.buttonContainerBottom}>
+        <Link href="/blog">
+          <a className={`${styles.linkButton} ${styles.green}`}>Blog</a>
+        </Link>
+
+        <Link href="/forum">
+          <a className={`${styles.linkButton} ${styles.blue}`}>Forum</a>
         </Link>
       </div>
 
