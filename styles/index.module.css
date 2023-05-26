@@ -1,3 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .githubButtonContainer {
   text-align: left;
   display: flex;
@@ -7,7 +15,8 @@
 
 .githubButton {
   border-radius: 4px;
-  background-color: green;
+  color: rgb(254, 226, 89);
+  border: 3px solid rgb(161, 161, 161);
   padding: 1%;
 }
 
@@ -19,39 +28,36 @@
   text-align: center;
 }
 
-
-.buttonContainerTop {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-}
-
+.buttonContainerTop,
 .buttonContainerBottom {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .linkButton {
   display: inline-block;
   padding: 10px 20px;
-  margin-right: 10px;
+  margin-bottom: 10px;
   font-size: 16px;
   text-decoration: none;
   border-radius: 4px;
+  width: 48%; /* Adjust the percentage value as needed */
 }
 
-.blue {
-  background-color: blue;
-  color: rgb(161, 161, 161);
+.buttonImage {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-.green {
-  background-color: green;
-  color: rgb(161, 161, 161);
-}
-
-.red {
-  background-color: rgb(150, 0, 0);
-  color: rgb(161, 161, 161);
+.buttonColor {
+  color: rgb(254, 226, 89);
+  /* I think it looks better without the this:
+  border: 3px solid rgb(161, 161, 161); 
+  But maybe it will be useful later*/
 }
