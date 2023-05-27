@@ -1,0 +1,20 @@
+.buttonText {
+    display: flex;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgb(254, 226, 89);;
+    border: 2px solid white;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .button:hover {
+    background-color: rgb(255, 233, 124);;
+    color: rgb(0, 0, 0);
+  }
+  

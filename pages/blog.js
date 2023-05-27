@@ -1,33 +1,41 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
+import axios from 'axios';
 import styles from '../styles/blog.module.css';
-import { format } from 'date-fns';
+import HomeButton from './homebutton';
 
-export default function Blog() {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await fetch('http://localhost:1337/api/blogs');
-        const data = await response.json();
-        setBlogs(data.data);
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-      }
-    };
-
-    fetchBlogs();
-  }, []);
-
+export default function Blog({ blogs }) {
   return (
-    <div className={styles.blog}>
-      {blogs.map(blog => (
-        <div className={styles['blog-item']} key={blog.id}>
-          <h1>{blog.attributes.Title}</h1>
-          <h2>{format(new Date(blog.attributes.PublishedOn), 'MMM dd, yyyy HH:mm')}</h2>
+    <div className={styles.blogPost}>
+      <HomeButton />
+      <h1 className={styles.blogTitle}>Blog Page</h1>
+      {blogs.map((blog) => (
+        <div key={blog.id}>
+          <h2 className={styles.blogPostTitle}>{blog.attributes.Title}</h2>
           <p>{blog.attributes.Content}</p>
+          <p>Published on: {formatDate(blog.attributes.PublishedOn)}</p>
+          <hr className={styles.blogPostDivider}/>
         </div>
       ))}
     </div>
   );
+}
+
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+  return new Date(dateString).toLocaleString(undefined, options);
+}
+
+export async function getServerSideProps() {
+  try {
+    const response = await axios.get('http://localhost:80/api/blogs');
+    const blogs = response.data.data;
+    return {
+      props: { blogs },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: { blogs: [] },
+    };
+  }
 }

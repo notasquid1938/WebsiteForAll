@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import styles from '../styles/chat.module.css';
+import HomeButton from './homebutton';
 
 export default function Chat() {
   const [data, setData] = useState([]);
@@ -68,10 +69,11 @@ export default function Chat() {
 
   return (
     <div className={styles.chatContainer}>
-      <h1 className={styles.chatTitle}>Chat</h1>
+      <HomeButton />
       <div className={styles.usernameContainer}>
         <p className={styles.username}>{username}</p>
       </div>
+      <h1 className={styles.chatTitle}>Chat</h1>
       <div>
         {data.map((entry) => (
           <div key={entry._id} className={styles.chatEntry}>

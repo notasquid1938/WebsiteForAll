@@ -62,7 +62,7 @@ export default function Home() {
       </div>
 
       <div>
-        <h1>About</h1>
+        <h1 className={styles.aboutTitle}>About</h1>
         <p1 className="About">
           Lorem ipsum... you get the idea. This needs work.
         </p1>

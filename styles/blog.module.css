@@ -1,7 +1,12 @@
 .blog {
     margin: 20px;
   }
-  
+
+  .blogTitle {
+    text-align: center;
+    color: rgb(254, 226, 89);;
+  }
+
   .blog-item {
     margin-bottom: 30px;
   }
@@ -16,3 +21,6 @@
     font-size: 16px;
   }
   
+  .blogPostDivider {
+    border-color: gold;
+  }
