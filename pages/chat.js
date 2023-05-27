@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/chat.module.css';
 import HomeButton from './homebutton';
 
@@ -28,7 +28,6 @@ export default function Chat() {
     const generatedUsername = randomColor + randomAnimal + randomNumber;
     setUsername(generatedUsername);
     fetchData();
-
     const interval = setInterval(() => {
       fetchData();
     }, 1000);
@@ -74,9 +73,12 @@ export default function Chat() {
         <p className={styles.username}>{username}</p>
       </div>
       <h1 className={styles.chatTitle}>Chat</h1>
-      <div>
+      <div className={styles.messagesContainer}>
         {data.map((entry) => (
-          <div key={entry._id} className={styles.chatEntry}>
+          <div
+            key={entry._id}
+            className={`${styles.chatEntry} ${entry.Username === username ? styles.currentUserMessage : ''}`}
+          >
             <h2 className={styles.username}>{entry.Username}</h2>
             <p className={styles.message}>{entry.Message}</p>
             <p className={styles.timestamp}>{new Date(entry.Timestamp).toLocaleString()}</p>

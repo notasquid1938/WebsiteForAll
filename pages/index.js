@@ -55,7 +55,7 @@ export default function Home() {
 
         <Link href="/forum">
           <a className={`${styles.linkButton} ${styles.buttonColor}`}>
-            <img src="/images/Forum.jpg" alt="Forum" className={styles.buttonImage} />
+            <img src="/images/Forum.png" alt="Forum" className={styles.buttonImage} />
             Forum
           </a>
         </Link>
