@@ -24,4 +24,12 @@ Things that need to be setup:
       -Setup the latest verion of strapi and create a new media collection called blogs
       
   3.Profit?? (Ironically, of course)
+
+Notes (for me and you):
+
+To start the website after restarting pc/server follow these steps:
+
+    1.Start strapi by cd into website\blog and then running "npm run start"
+    2.Start MongoDB by 
+    3.Run "npm run dev" in the website directory to start the website on port 80 and make it accessible on public ip
       
