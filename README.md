@@ -30,6 +30,6 @@ Notes (for me and you):
 To start the website after restarting pc/server follow these steps:
 
     1.Start strapi by cd into website\blog and then running "npm run start"
-    2.Start MongoDB by 
+    2.Start MongoDB by running mongod --dbpath "C:\data\db" --logpath "C:\data\log\mongod.log" MAKE SURE MONGOD IS SET AS A SYSTEM VARIABLE AND THAT YOU HAVE MANUALLY CREATED THE REQUIERED FILE PATHS
     3.Run "npm run dev" in the website directory to start the website on port 80 and make it accessible on public ip
       
