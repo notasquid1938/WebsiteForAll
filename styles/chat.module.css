@@ -33,6 +33,10 @@
   color: rgb(254, 226, 89);
 }
 
+.chatroomSelector {
+  align-self: center;
+}
+
 .chatEntry {
   margin-bottom: 20px;
   display: flex;

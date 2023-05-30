@@ -1,27 +1,14 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/chat.module.css';
 import HomeButton from './homebutton';
+import { colors, animals } from './usernames';
 
 export default function Chat() {
   const [data, setData] = useState([]);
   const [username, setUsername] = useState('');
+  const [selectedChatroom, setSelectedChatroom] = useState('General'); // Default chatroom is 'General'
 
   useEffect(() => {
-    const colors = [
-      'Red', 'Blue', 'Green', 'Yellow', 'Orange',
-      'Purple', 'Pink', 'Black', 'White', 'Gray',
-      'Brown', 'Cyan', 'Magenta', 'Lime', 'Teal',
-      'Indigo', 'Aqua', 'Silver', 'Gold', 'Maroon',
-      'Navy', 'Olive', 'Plum', 'Turquoise', 'Violet'
-    ];
-    const animals = [
-      'Lion', 'Tiger', 'Bear', 'Elephant', 'Giraffe',
-      'Fly', 'Kangaroo', 'Zebra', 'Hippo', 'Leopard',
-      'Rhino', 'Penguin', 'Crocodile', 'Koala', 'Gorilla',
-      'Cheetah', 'Panda', 'Kangaroo', 'Squirrel', 'Ostrich',
-      'Peacock', 'Raccoon', 'Unicorn', 'Dolphin', 'Toucan'
-    ];
-
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
     const randomNumber = Math.floor(100000000 + Math.random() * 900000000);
@@ -39,7 +26,7 @@ export default function Chat() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('/api/data');
+      const response = await fetch(`/api/data?chatroom=${selectedChatroom}`);
       const data = await response.json();
       setData(data);
     } catch (error) {
@@ -58,7 +45,7 @@ export default function Chat() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, message }),
+        body: JSON.stringify({ username, message, selectedChatroom }),
       });
       fetchData();
     } catch (error) {
@@ -66,9 +53,21 @@ export default function Chat() {
     }
   };
 
+  const handleChatroomChange = (event) => {
+    setSelectedChatroom(event.target.value);
+  };
+
   return (
     <div className={styles.chatContainer}>
       <HomeButton />
+      <div className={styles.chatroomSelector}>
+        <label htmlFor="chatroom">Select Chatroom: </label>
+        <select id="chatroom" name="chatroom" value={selectedChatroom} onChange={handleChatroomChange}>
+          <option value="General">General</option>
+          <option value="Spam">Spam</option>
+          <option value="Under Construction">Under Construction</option>
+        </select>
+      </div>
       <div className={styles.usernameContainer}>
         <p className={styles.username}>{username}</p>
       </div>

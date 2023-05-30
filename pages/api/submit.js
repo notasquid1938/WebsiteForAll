@@ -2,11 +2,12 @@ import connectToDatabase from '../../db';
 
 export default async function handler(req, res) {
   try {
-    const { username, message } = req.body;
+    const { username, message, selectedChatroom } = req.body;
 
     const db = await connectToDatabase();
     const collection = db.collection('Messages');
     const newEntry = {
+      Chatroom: selectedChatroom,
       Username: username,
       Message: message,
       Timestamp: new Date(),
