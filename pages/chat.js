@@ -30,7 +30,7 @@ export default function Chat() {
     fetchData();
     const interval = setInterval(() => {
       fetchData();
-    }, 1000);
+    }, 500);
 
     return () => {
       clearInterval(interval);
