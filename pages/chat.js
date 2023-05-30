@@ -73,17 +73,23 @@ export default function Chat() {
       </div>
       <h1 className={styles.chatTitle}>Chat</h1>
       <div className={styles.messagesContainer}>
-        {data.map((entry) => (
-          <div
-            key={entry._id}
-            className={`${styles.chatEntry} ${entry.Username === username ? styles.currentUserMessage : ''}`}
-          >
-            <h2 className={styles.username}>{entry.Username}</h2>
-            <p className={styles.message}>{entry.Message}</p>
-            <p className={styles.timestamp}>{new Date(entry.Timestamp).toLocaleString()}</p>
-          </div>
-        ))}
-      </div>
+        {data.map((entry) => {
+          // Only render messages if their chatroom matches the selected chatroom
+          if (entry.Chatroom === selectedChatroom) {
+            return (
+              <div
+                key={entry._id}
+                className={`${styles.chatEntry} ${entry.Username === username ? styles.currentUserMessage : ''}`}
+              >
+                <h2 className={styles.username}>{entry.Username}</h2>
+                <p className={styles.message}>{entry.Message}</p>
+                <p className={styles.timestamp}>{new Date(entry.Timestamp).toLocaleString()}</p>
+              </div>
+            );
+          }
+          return null; // Skip rendering for messages that don't match the selected chatroom
+        })}
+      </div>   
       <form className={styles.chatForm} onSubmit={handleSubmit}>
         <input type="text" name="message" placeholder="Message" required />
         <button type="submit">Submit</button>
