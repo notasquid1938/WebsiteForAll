@@ -1,28 +1,20 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/chat.module.css';
 import HomeButton from './components/homebutton';
-import { colors, animals } from './components/usernames';
+import Username from './components/username';
 
 export default function Chat() {
   const [data, setData] = useState([]);
-  const [username, setUsername] = useState('');
   const [selectedChatroom, setSelectedChatroom] = useState('General'); // Default chatroom is 'General'
 
   useEffect(() => {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
-    const randomNumber = Math.floor(100000000 + Math.random() * 900000000);
-    const generatedUsername = randomColor + randomAnimal + randomNumber;
-    setUsername(generatedUsername);
     fetchData();
-    const interval = setInterval(() => {
-      fetchData();
-    }, 500);
+    const interval = setInterval(fetchData, 500);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [selectedChatroom]);
 
   const fetchData = async () => {
     try {
@@ -67,9 +59,7 @@ export default function Chat() {
           <option value="Spam">Spam</option>
         </select>
       </div>
-      <div className={styles.usernameContainer}>
-        <p className={styles.username}>{username}</p>
-      </div>
+      <Username />
       <h1 className={styles.chatTitle}>{selectedChatroom} Chat</h1>
       <div className={styles.messagesContainer}>
         {data.map((entry) => {
@@ -78,7 +68,7 @@ export default function Chat() {
             return (
               <div
                 key={entry._id}
-                className={`${styles.chatEntry} ${entry.Username === username ? styles.currentUserMessage : ''}`}
+                className={`${styles.chatEntry} ${entry.Username === Username ? styles.currentUserMessage : ''}`}
               >
                 <h2 className={styles.username}>{entry.Username}</h2>
                 <p className={styles.message}>{entry.Message}</p>
@@ -88,11 +78,11 @@ export default function Chat() {
           }
           return null; // Skip rendering for messages that don't match the selected chatroom
         })}
-      </div>   
-        <form className={styles.chatForm} onSubmit={handleSubmit}>
-          <textarea name="message" placeholder="Message" rows={3} required />
-          <button type="submit">Submit</button>
-        </form>
+      </div>
+      <form className={styles.chatForm} onSubmit={handleSubmit}>
+        <textarea name="message" placeholder="Message" rows={3} required />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
