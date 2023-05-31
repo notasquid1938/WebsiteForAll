@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/files.module.css';
 import HomeButton from './components/homebutton';
+import Username from './components/username';
 
 export default function Files() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -76,15 +77,17 @@ export default function Files() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <HomeButton />
-      <div>
-        <input type="file" onChange={handleFileChange} />
+      <Username />
+      <div className={styles.fileupload}>
+        <label htmlFor="file-input">Choose a file:</label>
+        <input id="file-input" type="file" onChange={handleFileChange} />
         <button onClick={handleFileUpload}>Upload</button>
       </div>
-      <div>
+      <div className={styles.filelist}>
         {uploadedFiles.map((fileName, index) => (
-          <div key={index}>
+          <div className={styles.file-item} key={index}>
             <p>{fileName}</p>
             <button onClick={() => handleFileDownload(fileName)}>Download</button>
           </div>
