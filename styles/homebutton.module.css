@@ -1,5 +1,6 @@
 .buttonText {
     display: flex;
+    align-self: baseline;
   }
   
   .button {

@@ -10,6 +10,8 @@ import translationSG from './locales/sg.json';
 import translationZH from './locales/zh.json';
 import translationHI from './locales/hi.json';
 import translationIT from './locales/it.json';
+import translationUK from './locales/uk.json';
+import translationRU from './locales/ru.json';
 
 i18n
   .use(LanguageDetector)
@@ -42,6 +44,12 @@ i18n
       },
       it: {
         translation: translationIT,
+      },
+      uk: {
+        translation: translationUK,
+      },
+      ru: {
+        translation: translationRU,
       },
     },
     fallbackLng: 'en',

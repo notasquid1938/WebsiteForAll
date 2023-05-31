@@ -48,10 +48,12 @@ export default function Home() {
           <option value="fr">Français</option> {/* French */}
           <option value="de">Deutsch</option> {/* Dutch */}
           <option value="pl">Polski</option> {/* Polish */}
-          <option value="sg">bahasa Indonesia</option> {/* Indonesian */}
+          <option value="sg">Bahasa Indonesia</option> {/* Indonesian */}
           <option value="zh">简体中文</option> {/* Chinese Simplified */}
           <option value="hi">हिंदी</option> {/* Hindi */}
           <option value="it">Italiano</option> {/* Italian */}
+          <option value="uk">Українська</option> {/* Ukranian */}
+          <option value="ru">Русский</option> {/* Russian */}
         </select>
       </div>
 

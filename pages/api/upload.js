@@ -12,7 +12,12 @@ export default async function handler(req, res) {
   try {
     const form = new formidable.IncomingForm();
 
-    form.uploadDir = path.join(process.cwd(), 'files');
+    const uploadDir = path.join(process.cwd(), 'files'); // Check if 'files' directory exists
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir); // Create 'files' directory if it doesn't exist
+    }
+
+    form.uploadDir = uploadDir;
     form.keepExtensions = true; // Keep the file extensions
 
     form.parse(req, (err, fields, files) => {
@@ -24,18 +29,14 @@ export default async function handler(req, res) {
 
       // Access the uploaded file using `files.file`
       const uploadedFile = files.file;
-      const fileExt = path.extname(uploadedFile.name);
-      const fileName = path.basename(uploadedFile.name, fileExt); // Get the file name without extension
+      const fileName = uploadedFile.name;
 
-      // Generate a unique file name with original extension
-      const uniqueFileName = `${fileName}_${Date.now()}${fileExt}`;
-
-      // Move the uploaded file to the desired location with the unique file name
-      const filePath = path.join(form.uploadDir, uniqueFileName);
+      // Move the uploaded file to the desired location with the original file name
+      const filePath = path.join(form.uploadDir, fileName);
       fs.renameSync(uploadedFile.path, filePath);
 
       // Return the file details or any other response you need
-      res.status(200).json({ fileName: uniqueFileName });
+      res.status(200).json({ fileName });
     });
   } catch (error) {
     console.error(error);

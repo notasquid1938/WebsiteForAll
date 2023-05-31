@@ -17,13 +17,17 @@ export default function Files() {
   }, []);
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    const fullName = file.name; // Get the full name of the file including the extension
+    setSelectedFile({ file, fullName });
   };
 
   const handleFileUpload = () => {
     if (selectedFile) {
+      const { file, fullName } = selectedFile;
+
       const formData = new FormData();
-      formData.append('file', selectedFile, selectedFile.name);
+      formData.append('file', file, fullName); // Append the full name to the form data
 
       fetch('/api/upload', {
         method: 'POST',
@@ -49,7 +53,7 @@ export default function Files() {
   };
 
   const handleFileDownload = (fileName) => {
-    fetch(`/api/files/${fileName}`)
+    fetch(`files/${fileName}`)
       .then((response) => {
         if (response.ok) {
           return response.blob();
@@ -58,20 +62,15 @@ export default function Files() {
         }
       })
       .then((blob) => {
-        // Create a temporary URL for the blob
         const url = URL.createObjectURL(blob);
 
-        // Create a link element and click it to initiate the download
         const link = document.createElement('a');
         link.href = url;
         link.download = fileName;
         link.click();
-
-        // Clean up the temporary URL
         URL.revokeObjectURL(url);
       })
       .catch((error) => {
-        // Handle the error
         console.error(error);
       });
   };
