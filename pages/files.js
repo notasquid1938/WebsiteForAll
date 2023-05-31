@@ -23,7 +23,7 @@ export default function Files() {
   const handleFileUpload = () => {
     if (selectedFile) {
       const formData = new FormData();
-      formData.append('file', selectedFile);
+      formData.append('file', selectedFile, selectedFile.name);
 
       fetch('/api/upload', {
         method: 'POST',
@@ -93,7 +93,6 @@ export default function Files() {
           </div>
         ))}
       </div>
-      <p>Under Construction</p>
     </div>
   );
 }
