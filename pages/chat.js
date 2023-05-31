@@ -65,13 +65,12 @@ export default function Chat() {
         <select id="chatroom" name="chatroom" value={selectedChatroom} onChange={handleChatroomChange}>
           <option value="General">General</option>
           <option value="Spam">Spam</option>
-          <option value="Under Construction">Under Construction</option>
         </select>
       </div>
       <div className={styles.usernameContainer}>
         <p className={styles.username}>{username}</p>
       </div>
-      <h1 className={styles.chatTitle}>Chat</h1>
+      <h1 className={styles.chatTitle}>{selectedChatroom} Chat</h1>
       <div className={styles.messagesContainer}>
         {data.map((entry) => {
           // Only render messages if their chatroom matches the selected chatroom
@@ -90,10 +89,10 @@ export default function Chat() {
           return null; // Skip rendering for messages that don't match the selected chatroom
         })}
       </div>   
-      <form className={styles.chatForm} onSubmit={handleSubmit}>
-        <input type="text" name="message" placeholder="Message" required />
-        <button type="submit">Submit</button>
-      </form>
+        <form className={styles.chatForm} onSubmit={handleSubmit}>
+          <textarea name="message" placeholder="Message" rows={3} required />
+          <button type="submit">Submit</button>
+        </form>
     </div>
   );
 }
