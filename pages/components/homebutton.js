@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from '../styles/homebutton.module.css'; 
+import styles from '../../styles/homebutton.module.css'; 
 
 export default function HomeButton() {
   return (

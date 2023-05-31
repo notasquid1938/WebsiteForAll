@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/chat.module.css';
-import HomeButton from './homebutton';
-import { colors, animals } from './usernames';
+import HomeButton from './components/homebutton';
+import { colors, animals } from './components/usernames';
 
 export default function Chat() {
   const [data, setData] = useState([]);

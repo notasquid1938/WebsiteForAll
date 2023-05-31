@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import styles from '../styles/blog.module.css';
-import HomeButton from './homebutton';
+import HomeButton from './components/homebutton';
 
 export default function Blog({ blogs }) {
   return (

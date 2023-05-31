@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/forum.module.css';
-import HomeButton from './homebutton';
+import HomeButton from './components/homebutton';
 
 
 export default function Forum() {
