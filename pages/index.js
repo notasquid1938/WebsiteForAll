@@ -46,7 +46,7 @@ export default function Home() {
           <option value="en">English</option>
           <option value="es">Spanish</option>
           <option value="fr">French</option>
-          {/* Add more language options as needed */}
+          <option value="de">German</option>
         </select>
       </div>
 
