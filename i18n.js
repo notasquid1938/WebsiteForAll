@@ -5,6 +5,11 @@ import translationEN from './locales/en.json';
 import translationES from './locales/es.json';
 import translationFR from './locales/fr.json';
 import translationDE from './locales/de.json';
+import translationPL from './locales/pl.json';
+import translationSG from './locales/sg.json';
+import translationZH from './locales/zh.json';
+import translationHI from './locales/hi.json';
+import translationIT from './locales/it.json';
 
 i18n
   .use(LanguageDetector)
@@ -22,6 +27,21 @@ i18n
       },
       de: {
         translation: translationDE,
+      },
+      pl: {
+        translation: translationPL,
+      },
+      sg: {
+        translation: translationSG,
+      },
+      zh: {
+        translation: translationZH,
+      },
+      hi: {
+        translation: translationHI,
+      },
+      it: {
+        translation: translationIT,
       },
     },
     fallbackLng: 'en',

@@ -44,9 +44,14 @@ export default function Home() {
       <div className={styles.languageDropdown}>
         <select value={selectedLanguage} onChange={handleLanguageChange}>
           <option value="en">English</option>
-          <option value="es">Spanish</option>
-          <option value="fr">French</option>
-          <option value="de">German</option>
+          <option value="es">Español</option> {/* Spanish */}
+          <option value="fr">Français</option> {/* French */}
+          <option value="de">Deutsch</option> {/* Dutch */}
+          <option value="pl">Polski</option> {/* Polish */}
+          <option value="sg">bahasa Indonesia</option> {/* Indonesian */}
+          <option value="zh">简体中文</option> {/* Chinese Simplified */}
+          <option value="hi">हिंदी</option> {/* Hindi */}
+          <option value="it">Italiano</option> {/* Italian */}
         </select>
       </div>
 
