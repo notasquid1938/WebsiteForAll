@@ -25,16 +25,16 @@ export default function Files() {
   const handleFileUpload = () => {
     if (selectedFile) {
       const { file, fullName } = selectedFile;
-
+  
       const formData = new FormData();
-      formData.append('file', file, fullName); // Append the full name to the form data
-
+      formData.append('file', file);
+      formData.append('fullName', fullName); // Append the full name to the form data
+  
       fetch('/api/upload', {
         method: 'POST',
         body: formData,
       })
         .then((response) => {
-          // Handle the response
           if (response.ok) {
             return response.json();
           } else {
@@ -42,15 +42,14 @@ export default function Files() {
           }
         })
         .then((data) => {
-          // File uploaded successfully
           setUploadedFiles((prevFiles) => [...prevFiles, data.fileName]);
         })
         .catch((error) => {
-          // Handle the error
           console.error(error);
         });
     }
-  };
+  };  
+  
 
   const handleFileDownload = (fileName) => {
     fetch(`files/${fileName}`)

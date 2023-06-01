@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import styles from '../styles/blog.module.css';
 import HomeButton from './components/homebutton';
 
@@ -11,9 +12,9 @@ export default function Blog({ blogs }) {
       {blogs.map((blog) => (
         <div key={blog.id}>
           <h2 className={styles.blogPostTitle}>{blog.attributes.Title}</h2>
-          <p>{blog.attributes.Content}</p>
+          <ReactMarkdown>{blog.attributes.Content}</ReactMarkdown>
           <p>Published on: {formatDate(blog.attributes.PublishedOn)}</p>
-          <hr className={styles.blogPostDivider}/>
+          <hr className={styles.blogPostDivider} />
         </div>
       ))}
     </div>
