@@ -26,6 +26,7 @@ const filesHandler = async (req, res) => {
           };
         })
       );
+      res.setHeader('Content-Type', 'application/json'); // Set the response content type
       res.status(200).json(fileDetails);
     } catch (error) {
       console.error('Error reading files:', error);

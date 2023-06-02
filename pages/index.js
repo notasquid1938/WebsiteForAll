@@ -18,8 +18,8 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{t('homepage.title')}</title>
-        <meta name="description" content={t('homepage.description')} />
+        <title>{t('GGH')}</title>
+        <meta name="description" content={t('Home page for Global Good Hub')} />
       </Head>
 
       <div className={styles.githubButtonContainer}>
@@ -91,7 +91,7 @@ export default function Home() {
 
       <div>
         <h1 className={styles.aboutTitle}>{t('homepage.aboutTitle')}</h1>
-        <p1 className="About">{t('homepage.aboutContent')}</p1>
+        <div className={styles.aboutContent} dangerouslySetInnerHTML={{ __html: t('homepage.aboutContent') }} />
       </div>
     </div>
   );

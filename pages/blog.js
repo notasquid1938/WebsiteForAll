@@ -3,10 +3,15 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import styles from '../styles/blog.module.css';
 import HomeButton from './components/homebutton';
+import Head from 'next/head';
 
 export default function Blog({ blogs }) {
   return (
     <div className={styles.blogPost}>
+      <Head>
+        <title>{('GGH')}</title>
+        <meta name="description" content={('Home page for Global Good Hub')} />
+      </Head>
       <HomeButton />
       <h1 className={styles.blogTitle}>Blog Page</h1>
       {blogs.map((blog) => (

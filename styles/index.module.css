@@ -67,3 +67,7 @@
   text-align: center;
   color: rgb(254, 226, 89);;
 }
+
+.aboutContent p {
+  text-indent: 1em; /* This indents each pagraph of the about text */
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import styles from '../styles/chat.module.css';
 import HomeButton from './components/homebutton';
 import Username from './components/username';
+import Head from 'next/head';
 
 export default function Chat() {
   const [data, setData] = useState([]);
@@ -51,6 +52,10 @@ export default function Chat() {
 
   return (
     <div className={styles.chatContainer}>
+      <Head>
+        <title>{('GGH')}</title>
+        <meta name="description" content={('Live Chat Page for Global Good Hub')} />
+      </Head>
       <HomeButton />
       <div className={styles.chatroomSelector}>
         <label htmlFor="chatroom">Select Chatroom: </label>
