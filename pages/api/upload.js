@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     const timestamp = Date.now(); // Get the current timestamp
     const originalName = file.originalname;
     const extension = path.extname(originalName);
-    const fileName = `${path.basename(originalName, extension)}-${Username}${extension}`;
+    const fileName = `${path.basename(originalName, extension)}-${timestamp}${extension}`;
     cb(null, fileName);
   },
 });
@@ -32,9 +32,9 @@ export default async function handler(req, res) {
         res.status(500).json({ error: 'Failed to upload file' });
         return;
       }
-      
+
       const { file, body: { fullName } } = req;
-      const fileName = file.originalname;
+      const fileName = file.filename; // Use the generated filename
       const filePath = path.join(uploadDir, fileName);
 
       res.status(200).json({ fileName });

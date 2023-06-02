@@ -1,35 +1,26 @@
-import { useState, useEffect } from 'react';
 import styles from '../styles/files.module.css';
 import HomeButton from './components/homebutton';
 import Username from './components/username';
+import React, { useState, useEffect } from 'react';
+
 
 export default function Files() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadedFiles, setUploadedFiles] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/files')
-      .then((response) => response.json())
-      .then((data) => setUploadedFiles(data.files))
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    const fullName = file.name; // Get the full name of the file including the extension
+    const fullName = file.name;
     setSelectedFile({ file, fullName });
   };
 
   const handleFileUpload = () => {
     if (selectedFile) {
       const { file, fullName } = selectedFile;
-  
+
       const formData = new FormData();
       formData.append('file', file);
       formData.append('fullName', fullName); // Append the full name to the form data
-  
+
       fetch('/api/upload', {
         method: 'POST',
         body: formData,
@@ -42,14 +33,25 @@ export default function Files() {
           }
         })
         .then((data) => {
-          setUploadedFiles((prevFiles) => [...prevFiles, data.fileName]);
+          setFileList((prevFileList) => [...prevFileList, data.fileName]);
         })
         .catch((error) => {
           console.error(error);
         });
     }
-  };  
-  
+  };
+
+  // Fetch the list of uploaded files when the component mounts
+  useEffect(() => {
+    fetch('/api/files')
+      .then((response) => response.json())
+      .then((data) => {
+        setFileList(data.files);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleFileDownload = (fileName) => {
     fetch(`files/${fileName}`)
@@ -82,14 +84,6 @@ export default function Files() {
         <label htmlFor="file-input">Choose a file:</label>
         <input id="file-input" type="file" onChange={handleFileChange} />
         <button onClick={handleFileUpload}>Upload</button>
-      </div>
-      <div className={styles.filelist}>
-        {uploadedFiles.map((fileName, index) => (
-          <div className={styles.file-item} key={index}>
-            <p>{fileName}</p>
-            <button onClick={() => handleFileDownload(fileName)}>Download</button>
-          </div>
-        ))}
       </div>
     </div>
   );
