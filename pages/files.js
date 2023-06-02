@@ -2,6 +2,7 @@ import styles from '../styles/files.module.css';
 import HomeButton from './components/homebutton';
 import Username from './components/username';
 import React, { useState, useEffect } from 'react';
+import FileList from './components/FileList';
 
 
 export default function Files() {
@@ -85,6 +86,8 @@ export default function Files() {
         <input id="file-input" type="file" onChange={handleFileChange} />
         <button onClick={handleFileUpload}>Upload</button>
       </div>
+      <h1>Files</h1>
+      <FileList />
     </div>
   );
 }
