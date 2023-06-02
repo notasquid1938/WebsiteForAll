@@ -25,13 +25,27 @@ const FileList = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const downloadFile = (filePath) => {
+    fetch(filePath)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filePath.split('/').pop(); // Set the downloaded file name
+        a.click();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error('Error downloading file:', error);
+      });
+  };
+
   return (
     <div>
       {files.map((file) => (
         <div key={file.name}>
-          <a href={`/../../files/${file.name}`} download>
-            {file.name}
-          </a>
+          <button onClick={() => downloadFile(file.path)}>{file.name}</button>
         </div>
       ))}
     </div>

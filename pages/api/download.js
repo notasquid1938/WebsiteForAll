@@ -22,6 +22,7 @@ const filesHandler = async (req, res) => {
           return {
             name: file,
             size: fileStats.size,
+            path: filePath, // Add the file path to the response
           };
         })
       );
