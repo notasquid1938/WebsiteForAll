@@ -2,8 +2,7 @@ import styles from '../styles/files.module.css';
 import HomeButton from './components/homebutton';
 import Username from './components/username';
 import React, { useState, useEffect } from 'react';
-import FileList from './components/FileList';
-
+import FileList from './components/filelist';
 
 export default function Files() {
   const [selectedFile, setSelectedFile] = useState(null);
