@@ -9,8 +9,8 @@ export default function Blog({ blogs }) {
   return (
     <div className={styles.blogPost}>
       <Head>
-        <title>{('GGH')}</title>
-        <meta name="description" content={('Home page for Global Good Hub')} />
+        <title>GGH</title>
+        <meta name="description" content="Home page for Global Good Hub" />
       </Head>
       <HomeButton />
       <h1 className={styles.blogTitle}>Blog Page</h1>
@@ -35,6 +35,10 @@ export async function getServerSideProps() {
   try {
     const response = await axios.get('http://localhost:80/api/blogs');
     const blogs = response.data.data;
+
+    // Sort the blogs array based on the published date, oldest to newest
+    blogs.sort((a, b) => new Date(a.attributes.PublishedOn) - new Date(b.attributes.PublishedOn));
+
     return {
       props: { blogs },
     };
