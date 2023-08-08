@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import Head from 'next/head';
-import Link from 'next/link';
-import styles from '../styles/index.module.css';
-import i18n from '../i18n';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import Head from "next/head";
+import Link from "next/link";
+import styles from "../styles/index.module.css";
+import i18n from "../i18n";
 
 export default function Home() {
   const { t } = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
 
   const handleLanguageChange = (event) => {
     const language = event.target.value;
@@ -18,8 +18,8 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{t('GGH')}</title>
-        <meta name="description" content={t('Home page for Global Good Hub')} />
+        <title>{t("GGH")}</title>
+        <meta name="description" content={t("Home page for Global Good Hub")} />
       </Head>
 
       <div className={styles.githubButtonContainer}>
@@ -34,11 +34,11 @@ export default function Home() {
       </div>
 
       <div className={styles.title}>
-        <h1>{t('homepage.welcome')}</h1>
+        <h1>{t("homepage.welcome")}</h1>
       </div>
 
       <div className={styles.slogan}>
-        <p1>{t('homepage.slogan')}</p1>
+        <p1>{t("homepage.slogan")}</p1>
       </div>
 
       <div className={styles.languageDropdown}>
@@ -60,15 +60,23 @@ export default function Home() {
       <div className={styles.buttonContainerTop}>
         <Link href="/chat">
           <a className={`${styles.linkButton} ${styles.buttonColor}`}>
-            <img src="/images/Chat.png" alt="Chat" className={styles.buttonImage} />
-            {t('homepage.liveChat')}
+            <Image
+              src="/images/Chat.png"
+              alt="Chat"
+              className={styles.buttonImage}
+            />
+            {t("homepage.liveChat")}
           </a>
         </Link>
 
         <Link href="/files">
           <a className={`${styles.linkButton} ${styles.buttonColor}`}>
-            <img src="/images/Files.png" alt="Files" className={styles.buttonImage} />
-            {t('homepage.files')}
+            <Image
+              src="/images/Files.png"
+              alt="Files"
+              className={styles.buttonImage}
+            />
+            {t("homepage.files")}
           </a>
         </Link>
       </div>
@@ -76,22 +84,33 @@ export default function Home() {
       <div className={styles.buttonContainerBottom}>
         <Link href="/blog">
           <a className={`${styles.linkButton} ${styles.buttonColor}`}>
-            <img src="/images/Logo.png" alt="Blog" className={styles.buttonImage} />
-            {t('homepage.blog')}
+            <Image
+              src="/images/Logo.png"
+              alt="Blog"
+              className={styles.buttonImage}
+            />
+            {t("homepage.blog")}
           </a>
         </Link>
 
         <Link href="/forum">
           <a className={`${styles.linkButton} ${styles.buttonColor}`}>
-            <img src="/images/Forum.png" alt="Forum" className={styles.buttonImage} />
-            {t('homepage.forum')}
+            <Image
+              src="/images/Forum.png"
+              alt="Forum"
+              className={styles.buttonImage}
+            />
+            {t("homepage.forum")}
           </a>
         </Link>
       </div>
 
       <div>
-        <h1 className={styles.aboutTitle}>{t('homepage.aboutTitle')}</h1>
-        <div className={styles.aboutContent} dangerouslySetInnerHTML={{ __html: t('homepage.aboutContent') }} />
+        <h1 className={styles.aboutTitle}>{t("homepage.aboutTitle")}</h1>
+        <div
+          className={styles.aboutContent}
+          dangerouslySetInnerHTML={{ __html: t("homepage.aboutContent") }}
+        />
       </div>
     </div>
   );
