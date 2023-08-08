@@ -28,13 +28,18 @@ const generateRandomUsername = () => {
   return randomColor + randomAnimal + randomNumber;
 };
 
+const isValidUsernameFormat = (username) => {
+  const pattern = /^[A-Z][a-z]+[A-Z][a-z]+\d{9}$/;
+  return pattern.test(username);
+};
+
 const Username = () => {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('generatedUsername');
-    
-    if (storedUsername) {
+
+    if (storedUsername && isValidUsernameFormat(storedUsername)) {
       setUsername(storedUsername);
     } else {
       const generatedUsername = generateRandomUsername();
