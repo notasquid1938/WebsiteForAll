@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import styles from '../styles/chat.module.css';
-import HomeButton from './components/homebutton';
-import { Username, generateRandomUsername } from './components/username';
-import Head from 'next/head';
+import { useState, useEffect } from "react";
+import styles from "../styles/chat.module.css";
+import HomeButton from "./components/homebutton";
+import { Username, generateRandomUsername } from "./components/username";
+import Head from "next/head";
 
 export default function Chat() {
   const [data, setData] = useState([]);
-  const [selectedChatroom, setSelectedChatroom] = useState('General'); // Default chatroom is 'General'
-  
+  const [selectedChatroom, setSelectedChatroom] = useState("General"); // Default chatroom is 'General'
+
   const { username, UsernameComponent } = Username(); // Generate username
-  
+
   useEffect(() => {
     fetchData();
     const interval = setInterval(fetchData, 500);
@@ -25,26 +25,26 @@ export default function Chat() {
       const data = await response.json();
       setData(data);
     } catch (error) {
-      console.error('Error occurred while fetching data.', error);
+      console.error("Error occurred while fetching data.", error);
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const message = event.target.message.value;
-    event.target.message.value = '';
+    event.target.message.value = "";
 
     try {
-      await fetch('/api/submit', {
-        method: 'POST',
+      await fetch("/api/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, message, selectedChatroom }),
       });
       fetchData();
     } catch (error) {
-      console.error('Error occurred while submitting the form.', error);
+      console.error("Error occurred while submitting the form.", error);
     }
   };
 
@@ -61,7 +61,12 @@ export default function Chat() {
       <HomeButton />
       <div className={styles.chatroomSelector}>
         <label htmlFor="chatroom">Select Chatroom: </label>
-        <select id="chatroom" name="chatroom" value={selectedChatroom} onChange={handleChatroomChange}>
+        <select
+          id="chatroom"
+          name="chatroom"
+          value={selectedChatroom}
+          onChange={handleChatroomChange}
+        >
           <option value="General">General</option>
           <option value="Spam">Spam</option>
         </select>
@@ -75,12 +80,14 @@ export default function Chat() {
               <div
                 key={entry._id}
                 className={`${styles.chatEntry} ${
-                  entry.Username === username ? styles.currentUserMessage : ''
+                  entry.Username === username ? styles.currentUserMessage : ""
                 }`}
               >
                 <h2 className={styles.username}>{entry.Username}</h2>
                 <p className={styles.message}>{entry.Message}</p>
-                <p className={styles.timestamp}>{new Date(entry.Timestamp).toLocaleString()}</p>
+                <p className={styles.timestamp}>
+                  {new Date(entry.Timestamp).toLocaleString()}
+                </p>
               </div>
             );
           }
