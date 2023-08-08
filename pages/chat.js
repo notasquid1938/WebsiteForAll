@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/chat.module.css';
 import HomeButton from './components/homebutton';
-import Username from './components/username';
+import { Username, generateRandomUsername } from './components/username';
 import Head from 'next/head';
 
 export default function Chat() {
   const [data, setData] = useState([]);
   const [selectedChatroom, setSelectedChatroom] = useState('General'); // Default chatroom is 'General'
-
+  
+  const { username, UsernameComponent } = Username(); // Generate username
+  
   useEffect(() => {
     fetchData();
     const interval = setInterval(fetchData, 500);
@@ -53,8 +55,8 @@ export default function Chat() {
   return (
     <div className={styles.chatContainer}>
       <Head>
-        <title>{('GGH')}</title>
-        <meta name="description" content={('Live Chat Page for Global Good Hub')} />
+        <title>GGH</title>
+        <meta name="description" content="Live Chat Page for Global Good Hub" />
       </Head>
       <HomeButton />
       <div className={styles.chatroomSelector}>
@@ -64,16 +66,17 @@ export default function Chat() {
           <option value="Spam">Spam</option>
         </select>
       </div>
-      <Username />
+      <UsernameComponent /> {/* Display generated username */}
       <h1 className={styles.chatTitle}>{selectedChatroom} Chat</h1>
       <div className={styles.messagesContainer}>
         {data.map((entry) => {
-          // Only render messages if their chatroom matches the selected chatroom
           if (entry.Chatroom === selectedChatroom) {
             return (
               <div
                 key={entry._id}
-                className={`${styles.chatEntry} ${entry.Username === Username ? styles.currentUserMessage : ''}`}
+                className={`${styles.chatEntry} ${
+                  entry.Username === username ? styles.currentUserMessage : ''
+                }`}
               >
                 <h2 className={styles.username}>{entry.Username}</h2>
                 <p className={styles.message}>{entry.Message}</p>
@@ -81,7 +84,7 @@ export default function Chat() {
               </div>
             );
           }
-          return null; // Skip rendering for messages that don't match the selected chatroom
+          return null;
         })}
       </div>
       <form className={styles.chatForm} onSubmit={handleSubmit}>

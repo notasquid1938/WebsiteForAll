@@ -1,41 +1,49 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import styles from '../../styles/username.module.css'; 
+import React, { useState, useEffect } from 'react';
+import styles from '../../styles/username.module.css';
 
 const colors = [
-  'Red', 'Blue', 'Green', 'Yellow', 'Orange',
-  'Purple', 'Pink', 'Black', 'White', 'Gray',
-  'Brown', 'Cyan', 'Magenta', 'Lime', 'Teal',
-  'Indigo', 'Aqua', 'Silver', 'Gold', 'Maroon',
-  'Navy', 'Olive', 'Plum', 'Turquoise', 'Violet'
+  'red', 'blue', 'green', 'yellow', 'orange',
+  'purple', 'pink', 'black', 'white', 'gray',
+  'brown', 'cyan', 'magenta', 'lime', 'teal',
+  'indigo', 'aqua', 'silver', 'gold', 'maroon',
+  'navy', 'olive', 'plum', 'turquoise', 'violet'
 ];
 
 const animals = [
-  'Lion', 'Tiger', 'Bear', 'Elephant', 'Giraffe',
-  'Fly', 'Kangaroo', 'Zebra', 'Hippo', 'Leopard',
-  'Rhino', 'Penguin', 'Crocodile', 'Koala', 'Gorilla',
-  'Cheetah', 'Panda', 'Kangaroo', 'Squirrel', 'Ostrich',
-  'Peacock', 'Raccoon', 'Unicorn', 'Dolphin', 'Toucan'
+  'lion', 'tiger', 'bear', 'elephant', 'giraffe',
+  'fly', 'kangaroo', 'zebra', 'hippo', 'leopard',
+  'rhino', 'penguin', 'crocodile', 'koala', 'gorilla',
+  'cheetah', 'panda', 'kangaroo', 'squirrel', 'ostrich',
+  'peacock', 'raccoon', 'unicorn', 'dolphin', 'toucan'
 ];
+
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+const generateRandomUsername = () => {
+  const randomColor = capitalizeFirstLetter(colors[Math.floor(Math.random() * colors.length)]);
+  const randomAnimal = capitalizeFirstLetter(animals[Math.floor(Math.random() * animals.length)]);
+  const randomNumber = Math.floor(100000000 + Math.random() * 900000000);
+  return randomColor + randomAnimal + randomNumber;
+};
 
 const Username = () => {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
-    const randomNumber = Math.floor(100000000 + Math.random() * 900000000);
-    const generatedUsername = randomColor + randomAnimal + randomNumber;
+    const generatedUsername = generateRandomUsername();
     setUsername(generatedUsername);
   }, []);
 
-  return (
-    <div className={styles.usernameContainer}>
-      <p className={styles.username}>{username}</p>
-    </div>
-  );
-}
+  return {
+    username,
+    UsernameComponent: () => (
+      <div className={styles.usernameContainer}>
+        <p className={styles.username}>{username}</p>
+      </div>
+    ),
+  };
+};
 
-export default Username; 
-
-  
+export { Username };
