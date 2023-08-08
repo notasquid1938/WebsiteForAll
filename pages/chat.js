@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/chat.module.css";
 import HomeButton from "./components/homebutton";
-import { Username, generateRandomUsername } from "./components/username";
+import { Username } from "./components/username";
 import Head from "next/head";
 
 export default function Chat() {
@@ -9,15 +9,6 @@ export default function Chat() {
   const [selectedChatroom, setSelectedChatroom] = useState("General"); // Default chatroom is 'General'
 
   const { username, UsernameComponent } = Username(); // Generate username
-
-  useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 500);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [selectedChatroom]);
 
   const fetchData = async () => {
     try {
@@ -28,6 +19,16 @@ export default function Chat() {
       console.error("Error occurred while fetching data.", error);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+
+    const interval = setInterval(fetchData, 500);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [selectedChatroom, fetchData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

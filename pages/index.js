@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/index.module.css";
 import i18n from "../i18n";
+import Image from "next/image";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -64,6 +65,9 @@ export default function Home() {
               src="/images/Chat.png"
               alt="Chat"
               className={styles.buttonImage}
+              layout="responsive"
+              width={5}
+              height={3}
             />
             {t("homepage.liveChat")}
           </a>
@@ -75,6 +79,9 @@ export default function Home() {
               src="/images/Files.png"
               alt="Files"
               className={styles.buttonImage}
+              layout="responsive"
+              width={5}
+              height={3}
             />
             {t("homepage.files")}
           </a>
@@ -88,6 +95,9 @@ export default function Home() {
               src="/images/Logo.png"
               alt="Blog"
               className={styles.buttonImage}
+              layout="responsive"
+              width={5}
+              height={3}
             />
             {t("homepage.blog")}
           </a>
@@ -99,6 +109,9 @@ export default function Home() {
               src="/images/Forum.png"
               alt="Forum"
               className={styles.buttonImage}
+              layout="responsive"
+              width={5}
+              height={3}
             />
             {t("homepage.forum")}
           </a>

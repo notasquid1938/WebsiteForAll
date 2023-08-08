@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const FileList = () => {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
     const fetchFiles = () => {
-      fetch('/api/download')
+      fetch("/api/download")
         .then((response) => response.json())
         .then((data) => {
           setFiles(data);
         })
         .catch((error) => {
-          console.error('Error fetching files:', error);
+          console.error("Error fetching files:", error);
         });
     };
 
@@ -30,14 +30,14 @@ const FileList = () => {
       .then((response) => response.blob())
       .then((blob) => {
         const url = window.URL.createObjectURL(new Blob([blob]));
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = filePath.split('/').pop(); // Set the downloaded file name
+        a.download = filePath.split("/").pop(); // Set the downloaded file name
         a.click();
         window.URL.revokeObjectURL(url);
       })
       .catch((error) => {
-        console.error('Error downloading file:', error);
+        console.error("Error downloading file:", error);
       });
   };
 

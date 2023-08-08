@@ -1,9 +1,9 @@
-import styles from '../styles/files.module.css';
-import HomeButton from './components/homebutton';
-import Username from './components/username';
-import React, { useState, useEffect } from 'react';
-import FileList from './components/filelist';
-import Head from 'next/head';
+import styles from "../styles/files.module.css";
+import HomeButton from "./components/homebutton";
+import Username from "./components/username";
+import React, { useState, useEffect } from "react";
+import FileList from "./components/download";
+import Head from "next/head";
 
 export default function Files() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -19,18 +19,18 @@ export default function Files() {
       const { file, fullName } = selectedFile;
 
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('fullName', fullName); // Append the full name to the form data
+      formData.append("file", file);
+      formData.append("fullName", fullName); // Append the full name to the form data
 
-      fetch('/api/upload', {
-        method: 'POST',
+      fetch("/api/upload", {
+        method: "POST",
         body: formData,
       })
         .then((response) => {
           if (response.ok) {
             return response.json();
           } else {
-            throw new Error('Failed to upload file');
+            throw new Error("Failed to upload file");
           }
         })
         .then((data) => {
@@ -44,7 +44,7 @@ export default function Files() {
 
   // Fetch the list of uploaded files when the component mounts
   useEffect(() => {
-    fetch('/api/files')
+    fetch("/api/files")
       .then((response) => response.json())
       .then((data) => {
         setFileList(data.files);
@@ -60,13 +60,13 @@ export default function Files() {
         if (response.ok) {
           return response.blob();
         } else {
-          throw new Error('Failed to download file');
+          throw new Error("Failed to download file");
         }
       })
       .then((blob) => {
         const url = URL.createObjectURL(blob);
 
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = url;
         link.download = fileName;
         link.click();
@@ -80,8 +80,8 @@ export default function Files() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{('GGH')}</title>
-        <meta name="description" content={('Home page for Global Good Hub')} />
+        <title>{"GGH"}</title>
+        <meta name="description" content={"Home page for Global Good Hub"} />
       </Head>
       <HomeButton />
       <Username />
