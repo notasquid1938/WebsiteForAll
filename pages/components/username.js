@@ -32,8 +32,15 @@ const Username = () => {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    const generatedUsername = generateRandomUsername();
-    setUsername(generatedUsername);
+    const storedUsername = localStorage.getItem('generatedUsername');
+    
+    if (storedUsername) {
+      setUsername(storedUsername);
+    } else {
+      const generatedUsername = generateRandomUsername();
+      setUsername(generatedUsername);
+      localStorage.setItem('generatedUsername', generatedUsername);
+    }
   }, []);
 
   return {
